@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<title>Listeo</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/main-color.css') }}" id="colors">
+{% block style %}
+{% endblock %}
+</head>
+
+<body class="">
+<!-- Wrapper -->
+<div id="wrapper">
+
+	<!-- Header Container
+	================================================== -->
+	<header id="header-container">
+
+		<!-- Header -->
+		<div id="header">
+			<div class="container">
+				
+				<!-- Left Side Content -->
+				<div class="left-side">
+					
+					<!-- Logo -->
+					<div id="logo">
+						
+					</div>
+
+					<!-- Mobile Navigation -->
+					<div class="mmenu-trigger">
+						<button class="hamburger hamburger--collapse" type="button">
+							<span class="hamburger-box">
+								<span class="hamburger-inner"></span>
+							</span>
+						</button>
+					</div>
+
+					<!-- Main Navigation -->
+					<nav id="navigation" class="style-1">
+						<ul id="responsive">
+
+							<li><a class="current" href="{{url_for('home')}}">Home</a>
+							</li>
+
+							<li><a href="{{url_for('dashboard')}}">Dashboard</a>
+							</li>							
+						</ul>
+					</nav>
+					<div class="clearfix"></div>
+					<!-- Main Navigation / End -->
+					
+				</div>
+				<!-- Left Side Content / End -->
+
+
+				<!-- Right Side Content / End -->
+				<div class="right-side">
+					<div class="header-widget">
+                        <a href="{{ url_for('login') }}" class="sign-in"><i class="sl sl-icon-login"></i> Sign In</a>
+						<a href="{{ url_for('register') }}" class="sign-in"><i class="sl sl-icon-login"></i> Register</a>
+                    </div>
+                    
+				</div>
+				<!-- Right Side Content / End -->
+
+				
+
+			</div>
+		</div>
+		<!-- Header / End -->
+
+	</header>
+	<div class="clearfix"></div>
+	<!-- Header Container / End -->
+    {% block content %}
+    {% endblock %}
+</div>
+<!-- Wrapper / End -->
+
+
+
+<!-- Scripts
+================================================== -->
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/jquery-3.4.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/jquery-migrate-3.1.0.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/mmenu.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/chosen.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/slick.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/rangeslider.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/magnific-popup.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/waypoints.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/counterup.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/tooltips.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'scripts/custom.js') }}"></script>
+{% block script %}
+{% endblock %}
+</body>
+</html>

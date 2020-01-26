@@ -1,0 +1,110 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content%}
+	<!-- Content
+	================================================== -->
+	<div class="dashboard-content">
+
+		<!-- Titlebar -->
+		<div id="titlebar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Users</h2>
+					<!-- Breadcrumbs -->
+					<nav id="breadcrumbs">
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Dashboard</a></li>
+							<li>Users</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			
+			<!-- Listings -->
+			<div class="col-lg-12 col-md-12">
+				<table class="table table-bordered table-hover" id="user_table">
+					<thead>
+					  <tr>
+						<th> </th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>Address</th>
+						<th>Department</th>
+					  </tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+						<tr row_id="{{user.email}}">
+							<td>
+								<input type="checkbox" style="height: 20px;" class="checkmark">
+							</td>
+							<td><input type="text" class="row_data" edit_type="click" col_name="name" value="{{user.name}}"/></td>
+							<td><input type="text" class="row_data" edit_type="click" col_name="email" value="{{user.email}}"/></td>
+							<td><input type="text" class="row_data" edit_type="click" col_name="address" value="{{user.address}}"/></td>
+							<td><input type="text" class="row_data" edit_type="click" col_name="department" value="{{user.department}}"/></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				  </table>
+			</div>
+		</div>
+
+	</div>
+	<!-- Content / End -->
+
+{% endblock %}
+
+{% block script %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+
+
+<script>
+	$(document).ready( function () {
+    	$('#user_table').DataTable({
+			searching: false,
+			dom: 'Bfrtip',
+			buttons: [
+				{
+					text: 'DELETE',
+					action: function ( e, dt, node, config ) {
+						$.each($(".checkmark:checked"), function(){
+							let email = $(this).closest('tr').attr('row_id'); 
+							$.ajax({
+								type : 'DELETE',
+								url : '/api/v1/user/' + email
+							})
+							.done(function(data){
+								$(location).attr("href", "{{url_for('dashboard_users')}}");
+							});
+						})
+					}
+				}
+			]
+		});
+	
+		$(document).on('change', '.row_data', function(){
+			var row_id = $(this).closest('tr').attr('row_id'); 
+			var col_name = $(this).attr('col_name'); 
+			var col_val = $(this).val()
+			var arr = {};
+			arr[col_name] = col_val;
+			$.ajax({
+				type: 'PUT',
+				url : '/api/v1/user/' + row_id,
+				dataType: 'json',
+				data : arr
+			})
+			.done(function(data){
+
+			});
+		});
+	} );
+</script>
+{% endblock %}

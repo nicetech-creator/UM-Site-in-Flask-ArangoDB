@@ -1,0 +1,126 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<!-- Sign In Popup -->
+<div id="sign-in-dialog" class="zoom-anim-dialog">
+
+    <div class="small-dialog-header">
+        <h3>Register</h3>
+    </div>
+
+    <!--Tabs -->
+    <div class="sign-in-form style-1">
+
+        <div class="tabs-container alt">
+
+            <!-- Register -->
+            <div class="tab-content">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class=flashes>
+                    {% for category, message in messages %}
+                        <div class="notification {{category}} closeable">
+                            <p>{{message}}</p>
+                            <a class="close"></a>
+                        </div>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+                
+                <form method="post" class="register">
+                    {{ form.hidden_tag() }}
+                    <p class="form-row form-row-wide">
+                        <label for="username2">Username:
+                            <i class="im im-icon-Male"></i>
+                            {% if form.username.errors %}
+                                {{ form.username(class="input-text is-invalid") }}
+                                {% for error in form.username.errors %}
+                                    <div class="notification error closeable">
+                                        <p><span>Error!</span> {{ error }}</p>
+                                        <a class="close"></a>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {{ form.username(class="input") }}
+                            {% endif %}
+                        </label>
+                    </p>
+                        
+                    <p class="form-row form-row-wide">
+                        <label for="email2">Email Address:
+                            <i class="im im-icon-Mail"></i>
+                            {% if form.email.errors %}
+                                {{ form.email(class="input-text is-invalid") }}
+                                {% for error in form.email.errors %}
+                                    <div class="notification error closeable">
+                                        <p><span>Error!</span> {{ error }}</p>
+                                        <a class="close"></a>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {{ form.email(class="input-text") }}
+                            {% endif %}
+                        </label>
+                    </p>
+
+                    <p class="form-row form-row-wide">
+                        <label for="department">Department:
+                            <i class="im im-icon-City-Hall"></i>
+                            {% if form.department.errors %}
+                                {{ form.department(class="input-text is-invalid") }}
+                                {% for error in form.department.errors %}
+                                    <div class="notification error closeable">
+                                        <p><span>Error!</span> {{ error }}</p>
+                                        <a class="close"></a>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {{ form.department(class="input-text") }}
+                            {% endif %}
+                        </label>
+                    </p>
+
+                    <p class="form-row form-row-wide">
+                        <label for="password">Password:
+                            <i class="im im-icon-Lock-2"></i>
+                            {% if form.password.errors %}
+                                {{ form.password(class="input-text is-invalid") }}
+                                {% for error in form.password.errors %}
+                                    <div class="notification error closeable">
+                                        <p><span>Error!</span> {{ error }}</p>
+                                        <a class="close"></a>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {{ form.password(class="input-text") }}
+                            {% endif %}
+                        </label>
+                    </p>
+
+                    <p class="form-row form-row-wide">
+                        <label for="confirm_password">Repeat Password:
+                            <i class="im im-icon-Lock-2"></i>
+                            {% if form.confirm_password.errors %}
+                                {{ form.confirm_password(class="input-text is-invalid") }}
+                                {% for error in form.confirm_password.errors %}
+                                    <div class="notification error closeable">
+                                        <p><span>Error!</span> {{ error }}</p>
+                                        <a class="close"></a>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                {{ form.confirm_password(class="input-text") }}
+                            {% endif %}
+                        </label>
+                    </p>
+
+                    {{ form.submit(class="btn btn-outline-info") }}
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Sign In Popup / End -->
+{% endblock %}

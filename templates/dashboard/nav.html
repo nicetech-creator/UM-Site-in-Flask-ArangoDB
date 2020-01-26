@@ -1,0 +1,15 @@
+<div class="dashboard-nav-inner">
+
+    <ul data-submenu-title="Main">
+        <li class="active"><a href="{{ url_for('dashboard') }}"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
+        {% if data.admin %}
+			<li><a href="{{ url_for('dashboard_users') }}"><i class="sl sl-icon-user"></i> Users</a></li>
+			<li><a href="{{ url_for('dashboard_departments') }}"><i class="sl sl-icon-user"></i>Departments</a></li>
+        {% endif %}
+    </ul>
+        
+    <ul data-submenu-title="Account">
+        <li><a href="{{ url_for('logout') }}"><i class="sl sl-icon-power"></i> Logout</a></li>
+    </ul>
+    
+</div>

@@ -1,0 +1,92 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+	<!-- Content
+	================================================== -->
+	<div class="dashboard-content">
+
+		<!-- Titlebar -->
+		<div id="titlebar">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>My Profile</h2>
+					<!-- Breadcrumbs -->
+					<nav id="breadcrumbs">
+						<ul>
+							<li><a href="{{url_for('home')}}">Home</a></li>
+							<li>Dashboard</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+
+			<!-- Profile -->
+			<div class="col-lg-6 col-md-12">
+				<div class="dashboard-list-box margin-top-0">
+					<h4 class="gray">Profile Details</h4>
+					<div class="dashboard-list-box-static">
+	
+						<!-- Details -->
+						<div class="my-profile">
+
+							<form method="post">
+								{{ form.hidden_tag() }}
+								
+								<label>Name</label>
+								{{ form.username() }}
+
+								<label>Email</label>
+								{{ form.email() }}
+
+								<label>Address</label>
+								{{ form.address() }}
+
+								<label>Department</label>
+								{{ form.department() }}
+
+								{{ form.submit(class="button border margin-top-5") }}
+							</form>			
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- Change Password -->
+			<div class="col-lg-6 col-md-12">
+				<div class="dashboard-list-box margin-top-0">
+					<h4 class="gray">Change Password</h4>
+					<div class="dashboard-list-box-static">
+
+						<!-- Change Password -->
+						<div class="my-profile">
+							<form method="post" action="{{url_for('dashboard_password_change')}}">
+								{{ pass_form.hidden_tag() }}
+								
+								<label>Current Password</label>
+								{{ pass_form.password() }}
+
+								<label>New Password</label>
+								{{ pass_form.new_password() }}
+
+								<label>Confirm Password</label>
+								{{ pass_form.confirm_password() }}
+
+								{{ pass_form.submit(class="button border margin-top-5") }}
+							</form>	
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+
+	</div>
+	<!-- Content / End -->
+
+{% endblock %}
